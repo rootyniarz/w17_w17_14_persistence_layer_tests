@@ -1,0 +1,55 @@
+plugins {
+    id 'java'
+}
+
+group = 'pl.zajavka'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
+
+ext {
+
+}
+
+repositories {
+    mavenCentral()
+    maven { url 'https://repo.spring.io/milestone'}
+}
+
+dependencies {
+    implementation "ch.qos.logback:logback-classic:$logback_version"
+
+    compileOnly "org.projectlombok:lombok:$lombok_version"
+    annotationProcessor "org.projectlombok:lombok:$lombok_version"
+
+    implementation "org.springframework:spring-core:$spring_version"
+    implementation "org.springframework:spring-beans:$spring_version"
+    implementation "org.springframework:spring-context:$spring_version"
+    implementation "org.springframework:spring-context-support:$spring_version"
+    implementation "org.springframework:spring-expression:$spring_version"
+    implementation "org.springframework:spring-jdbc:$spring_version"
+    implementation "org.springframework:spring-tx:$spring_version"
+
+    implementation "org.springframework.data:spring-data-jpa:$springDataVersion"
+    implementation "org.hibernate:hibernate-core:$hibernate_version"
+    implementation "org.springframework:spring-orm:$spring_version"
+    implementation "org.postgresql:postgresql:$postgresql_driver_version"
+    implementation "org.flywaydb:flyway-core:9.19.0"
+
+    testCompileOnly "org.projectlombok:lombok:$lombok_version"
+    testAnnotationProcessor "org.projectlombok:lombok:$lombok_version"
+
+    testImplementation "org.junit.jupiter:junit-jupiter-api:$junit_version"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junit_version"
+    testImplementation"org.mockito:mockito-junit-jupiter:$mockitoVersion"
+    testImplementation"org.springframework:spring-test:$spring_version"
+    testImplementation"com.h2database:h2:$h2Version"
+}
+
+test {
+    useJUnitPlatform()
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+}
+
+compileJava.options.encoding = 'UTF-8'
